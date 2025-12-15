@@ -41,9 +41,7 @@ export default function Hero() {
             <span className="gradient-text">Computer Science Student</span>
           </p>
           <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-12">
-            Computer Science student with strong programming skills and practical experience in developing a range of applications.
-            Proficient in multiple programming languages and committed to writing efficient, high-quality code while continuously strengthening technical expertise.
-          </p>
+            Computer Science Engineering undergraduate with hands-on experience in Python and Java through internships, hackathons, and coding competitions. Focused on problem-solving and building practical software projects while strengthening core computer science fundamentals.</p>
           <div className="flex flex-wrap gap-4 justify-center mb-16">
             <a
               href="#contact"
