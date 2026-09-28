@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0c10" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fbfbfa" media="(prefers-color-scheme: light)" />
+    <!-- Resolve the theme before first paint so there is no light/dark flash. -->
+    <script>
+      (function () {
+        var t = "dark";
+        try {
+          var s = localStorage.getItem("theme");
+          t = s === "light" || s === "dark" ? s : matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        } catch (e) {}
+        document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Fonts load without blocking first paint; display=swap shows fallback text immediately. -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      />
+    </noscript>
+    <title>Vigneshwaran C — Applied AI & Full-Stack Engineer</title>
+    <meta name="description" content="Portfolio of Vigneshwaran C: applied-AI engineer building tool-calling agents, secure multi-tenant backends and DevSecOps pipelines, with CTF and open-source work on the side." />
+    <meta name="author" content="Vigneshwaran C" />
+    <link rel="canonical" href="https://vigneshwaran-c-portfolio.netlify.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vigneshwaran-c-portfolio.netlify.app/" />
+    <meta property="og:title" content="Vigneshwaran C — Applied AI & Full-Stack Engineer" />
+    <meta property="og:description" content="AI agents, secure backends, DevSecOps pipelines. CSE + IIT Madras Data Science dual-degree student." />
+    <meta property="og:image" content="https://vigneshwaran-c-portfolio.netlify.app/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vigneshwaran C — Applied AI & Full-Stack Engineer" />
+    <meta name="twitter:description" content="AI agents, secure backends, DevSecOps pipelines." />
+    <meta name="twitter:image" content="https://vigneshwaran-c-portfolio.netlify.app/og.png" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

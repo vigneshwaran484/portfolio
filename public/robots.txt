@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vigneshwaran-c-portfolio.netlify.app/sitemap.xml
