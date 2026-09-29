@@ -38,7 +38,7 @@ Fonts: Inter (text) and JetBrains Mono (code/labels). The theme toggle saves to 
 
 ## Deploy (Netlify)
 
-Site name: `vigneshwaran-c-portfolio` (the old portfolio site; this build overwrites it). `netlify.toml` sets build command, publish dir, SPA redirect and cache headers.
+Netlify site `vigneshwaran-c-portfolio`, served at https://vigneshwaranc.tech (free .tech domain from the GitHub Student Pack, expires 2027-09-29, auto-renew off). `netlify.toml` sets build command, publish dir, SPA redirect and cache headers.
 Connect the GitHub repo in Netlify, or run `npx netlify-cli deploy --prod --dir=dist` after `npm run build`.
 
 ## TODO after first deploy

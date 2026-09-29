@@ -14,7 +14,7 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/vigneshwaran-c484/",
   leetcode: "https://leetcode.com/u/Vignesh484/",
   resume: "/resume.pdf",
-  siteUrl: "https://vigneshwaran-c-portfolio.netlify.app",
+  siteUrl: "https://vigneshwaranc.tech",
 
   education: [
     {
