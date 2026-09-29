@@ -1,4 +1,4 @@
-import { contributions, ctf, practice } from "../../data/security";
+import { contributions, contributionsProgram, ctf, practice } from "../../data/security";
 import Card from "../ui/Card";
 import SectionHeader from "../ui/SectionHeader";
 import { ArrowRightIcon, GitHubIcon } from "../ui/Icons";
@@ -6,6 +6,9 @@ import { ArrowRightIcon, GitHubIcon } from "../ui/Icons";
 function Heading({ children }: { children: string }) {
   return <h3 className="mb-4 text-[0.95rem] font-semibold text-txt-0">{children}</h3>;
 }
+
+const merged = contributions.filter((c) => c.state === "merged");
+const inReview = contributions.filter((c) => c.state === "open");
 
 export default function Security() {
   return (
@@ -21,13 +24,14 @@ export default function Security() {
       <div className="grid gap-5 lg:grid-cols-2">
         <Card index={0} className="p-6 sm:p-7">
           <Heading>Open-source contributions</Heading>
+          <p className="-mt-2 mb-5 font-mono text-[0.76rem] text-txt-2">mostly via {contributionsProgram}</p>
           <ul className="space-y-5">
-            {contributions.map((c) => (
+            {merged.map((c) => (
               <li key={c.url}>
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className={`pill ${c.state === "merged" ? "text-violet" : "text-ok"}`}>
+                  <span className="pill text-violet">
                     <span className="pill__dot" aria-hidden="true" />
-                    {c.state}
+                    merged
                   </span>
                   <span className="font-mono text-[0.76rem] text-txt-2">{c.repo}</span>
                 </div>
@@ -39,6 +43,27 @@ export default function Security() {
               </li>
             ))}
           </ul>
+          {inReview.length > 0 && (
+            <div className="mt-6 border-t border-line pt-5">
+              <p className="mb-3 flex items-center gap-2 text-[0.85rem] font-medium text-txt-0">
+                <span className="pill text-ok">
+                  <span className="pill__dot" aria-hidden="true" />
+                  in review
+                </span>
+                {inReview.length} open PRs
+              </p>
+              <ul className="space-y-2">
+                {inReview.map((c) => (
+                  <li key={c.url} className="text-[14px] leading-snug">
+                    <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-txt-1 transition-colors hover:text-accent">
+                      {c.title}
+                    </a>
+                    <span className="ml-2 font-mono text-[0.72rem] text-txt-2">{c.repo.split("/")[1]}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </Card>
 
         <Card index={1} className="p-6 sm:p-7">
