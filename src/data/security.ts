@@ -90,7 +90,7 @@ export interface PracticeStat {
 }
 
 export const practice: PracticeStat[] = [
-  { value: "239", label: "LeetCode solved", detail: "144 easy · 79 medium · 16 hard", url: "https://leetcode.com/u/Vignesh484/" },
+  { value: "240", label: "LeetCode solved", detail: "144 easy · 80 medium · 16 hard", url: "https://leetcode.com/u/Vignesh484/" },
   { value: "1,614", label: "LeetCode contest rating", detail: "top 22.6%", url: "https://leetcode.com/u/Vignesh484/" },
   {
     value: "2,169",
