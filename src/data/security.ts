@@ -1,6 +1,6 @@
 /**
  * Security, open source and practice stats. Numbers are snapshots:
- * update them when they change (last checked 2026-09-29).
+ * update them when they change (last checked 2026-10-05).
  * PR states come from GitHub, not the OSCG dashboard (which counts
  * quality-passed PRs as merged before maintainers actually merge them).
  */
@@ -14,6 +14,13 @@ export interface Contribution {
   summary?: string;
 }
 
+/** Repos where only the merged-PR count is shown, with no per-PR claims. */
+export interface CountedContribution {
+  repo: string;
+  merged: number;
+  url: string;
+}
+
 export const contributionsProgram = "Open Source Connect India (OSCG 2026)";
 
 export const contributions: Contribution[] = [
@@ -23,7 +30,15 @@ export const contributions: Contribution[] = [
     state: "merged",
     url: "https://github.com/AnthropicBots/hiero-bot-py/pull/140",
     summary:
-      "Stopped a FastAPI GitHub bot from walking a repo's whole PR history on every eligibility check: capped pagination, at most 5 concurrent review fetches, a 5-minute per-user stats cache, and a partial-result flag when a cap is hit. Also skipped bot authors and de-duplicated role notices.",
+      "Stopped a FastAPI GitHub bot from walking a repo's whole PR history on every eligibility check: capped pagination, at most 5 concurrent review fetches, a 5-minute per-user stats cache, and a partial-result flag when a cap is hit.",
+  },
+  {
+    repo: "AnthropicBots/hiero-bot-py",
+    title: "Count a just-merged PR despite GitHub search lag",
+    state: "merged",
+    url: "https://github.com/AnthropicBots/hiero-bot-py/pull/150",
+    summary:
+      "Milestone celebrations were missed because GitHub Search hadn't indexed the merge yet. The bot now checks whether the merged PR is indexed and adds it to the count if not, before the stats are cached. Costs one extra search request per merge.",
   },
   {
     repo: "KanishJebaMathewM/Truxify",
@@ -34,10 +49,12 @@ export const contributions: Contribution[] = [
       "The swap contract accepted a lock duration of zero, so a sender could refund immediately and the recipient never had a real window to claim. Added 1-hour and 30-day bounds, checked before the hash lock is consumed so a rejected call doesn't burn it.",
   },
   {
-    repo: "AnthropicBots/hiero-bot-py",
-    title: "Count a just-merged PR despite GitHub search lag",
-    state: "open",
-    url: "https://github.com/AnthropicBots/hiero-bot-py/pull/150",
+    repo: "KanishJebaMathewM/Truxify",
+    title: "Lazily create the OpenAI client so the voice service loads without a key",
+    state: "merged",
+    url: "https://github.com/KanishJebaMathewM/Truxify/pull/16935",
+    summary:
+      "A singleton built its OpenAI client at import time, so a missing API key crashed API startup and stopped two test suites from loading. The client is now created on first use, with a clear error only when a voice query runs.",
   },
   {
     repo: "AnthropicBots/hiero-bot-py",
@@ -51,13 +68,18 @@ export const contributions: Contribution[] = [
     state: "open",
     url: "https://github.com/AnthropicBots/hiero-bot-py/pull/152",
   },
+];
+
+export const counted: CountedContribution[] = [
   {
-    repo: "logeshv586-code/AIproductfactory",
-    title: "Add a circuit breaker for remote LLM providers",
-    state: "open",
-    url: "https://github.com/logeshv586-code/AIproductfactory/pull/53",
+    repo: "SatyamPandey-07/WorkSphere",
+    merged: 11,
+    url: "https://github.com/SatyamPandey-07/WorkSphere/pulls?q=is%3Apr+author%3Avigneshwaran484+is%3Amerged",
   },
 ];
+
+/** Upstream merged PRs in total (excludes PRs into my own forks). */
+export const mergedTotal = contributions.filter((c) => c.state === "merged").length + counted.reduce((n, c) => n + c.merged, 0);
 
 export interface CtfEntry {
   event: string;

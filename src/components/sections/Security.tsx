@@ -1,4 +1,4 @@
-import { contributions, contributionsProgram, ctf, practice } from "../../data/security";
+import { contributions, contributionsProgram, counted, ctf, mergedTotal, practice } from "../../data/security";
 import Card from "../ui/Card";
 import SectionHeader from "../ui/SectionHeader";
 import { ArrowRightIcon, GitHubIcon } from "../ui/Icons";
@@ -24,7 +24,9 @@ export default function Security() {
       <div className="grid gap-5 lg:grid-cols-2">
         <Card index={0} className="p-6 sm:p-7">
           <Heading>Open-source contributions</Heading>
-          <p className="-mt-2 mb-5 font-mono text-[0.76rem] text-txt-2">mostly via {contributionsProgram}</p>
+          <p className="-mt-2 mb-5 font-mono text-[0.76rem] text-txt-2">
+            {mergedTotal} merged PRs via {contributionsProgram}
+          </p>
           <ul className="space-y-5">
             {merged.map((c) => (
               <li key={c.url}>
@@ -40,6 +42,18 @@ export default function Security() {
                   {c.title}
                 </a>
                 <p className="mt-1 text-[14px] leading-relaxed text-txt-1">{c.summary}</p>
+              </li>
+            ))}
+            {counted.map((c) => (
+              <li key={c.repo}>
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-[14px] text-txt-1 transition-colors hover:text-accent">
+                  <span className="pill text-violet">
+                    <span className="pill__dot" aria-hidden="true" />
+                    merged
+                  </span>
+                  + {c.merged} more in <span className="font-mono text-[0.8rem]">{c.repo}</span>
+                  <ArrowRightIcon width={12} height={12} />
+                </a>
               </li>
             ))}
           </ul>
